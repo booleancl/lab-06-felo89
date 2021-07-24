@@ -1,32 +1,32 @@
 // ES5 way
 function CircleES5(x, y, radius) {
-  this.x = x
-  this.y = y
-  this.radius = radius
+  this.x = x;
+  this.y = y;
+  this.radius = radius;
 }
 
-CircleES5.prototype.move = function(x, y) {
-  this.x = x
-  this.y = y
+CircleES5.prototype.move = function (x, y) {
+  this.x = x;
+  this.y = y;
 };
 
-CircleES5.prototype.area = function() {
-  return Math.PI * Math.pow(this.radius, 2)
+CircleES5.prototype.area = function () {
+  return Math.PI * Math.pow(this.radius, 2);
 };
 
 // ES6 way
 class CircleES6 {
   constructor(x, y, radius) {
-    this.x = x
-    this.y = y 
-    this.radius = radius
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
   }
   move(x, y) {
-    this.x = x 
-    this.y = y
+    this.x = x;
+    this.y = y;
   }
   area() {
-    return Math.PI * Math.pow(this.radius, 2)
+    return Math.PI * Math.pow(this.radius, 2);
   }
 }
 
@@ -36,12 +36,13 @@ function ColoredCircleES5(x, y, radius, color) {
   this.color = color;
 }
 
-ColoredCircleES5.prototype = new CircleES5;
-ColoredCircleES5.prototype.constructor = CircleES5
+ColoredCircleES5.prototype = new CircleES5();
+ColoredCircleES5.prototype.constructor = CircleES5;
 
 // ES6 way
 class ColoredCircleES6 extends CircleES6 {
   constructor(x, y, radius, color) {
+    super(x, y, radius);
     this.color = color;
   }
 }
@@ -49,18 +50,31 @@ class ColoredCircleES6 extends CircleES6 {
 // Experiment
 
 class Person {
-  
+  constructor(name) {
+    this.name = name;
+  }
+
+  greet() {
+    return `Hello I'm ${this.name}!`;
+  }
 }
 
-class Student {
-  
+class Student extends Person {
+  constructor(name, grade) {
+    super(name)
+    this.grade = grade;
+  }
+
+  greet() {
+    return `Hello I'm ${this.name}! from ${this.grade}`
+  }
 }
 
-module.exports = { 
+module.exports = {
   CircleES5,
   ColoredCircleES5,
   CircleES6,
   ColoredCircleES6,
   Person,
-  Student
-}
+  Student,
+};

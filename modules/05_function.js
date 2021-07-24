@@ -1,5 +1,5 @@
 // Top-level API is a function
 
-const render = () => {}
+const render = word => word
 
 module.exports = render

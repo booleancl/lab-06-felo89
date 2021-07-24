@@ -1,3 +1,4 @@
+const { log } = require('console');
 const https = require('https');
 
 function simplePromise(){
@@ -11,19 +12,19 @@ function simplePromise(){
     })
 }
 
- function simpleAsyncAwait() {
+ async function simpleAsyncAwait() {
   var promise = new Promise((resolve, reject) => {
     resolve({data: { message: 'success value'}})
   })
   
-  const result = promise 
+  const result = await promise 
   return result.data.message
 }
 
-function notSoSimpleAsyncAwait() {
+async function notSoSimpleAsyncAwait() {
 
   const fetch = (url) => 
-     new Promise((resolve, reject) => {
+    new Promise((resolve, reject) => {
       https.get(url, (res) => {
         let data = '';
         res.on('data', (rd) => data = data + rd);
@@ -32,11 +33,9 @@ function notSoSimpleAsyncAwait() {
       });
     });
   
+  const result = await fetch('https://www.boolean.cl/')
 
-   return fetch('https://www.boolean.cl/')
-    .then(result => {
-      return result.length;
-    });
+  return result.length
 }
 
 module.exports = {

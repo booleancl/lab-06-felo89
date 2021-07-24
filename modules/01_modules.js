@@ -2,8 +2,6 @@
 
 let b = 'b'
 
-console.log(arguments);
-
 module.exports = {
   a: 'a'
 }
